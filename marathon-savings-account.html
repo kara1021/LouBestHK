@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>馬拉松儲蓄戶口 - 老Best的大自在空間</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cash-rebate {
+            font-size: 14px;
+            color: #0077ed;
+            margin-top: 5px;
+        }
+        
+        .promo-details {
+            background: #f5f5f7;
+            border-radius: 12px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .promo-toggle {
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .promo-toggle:hover {
+            background: #ebecef;
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .promo-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .promo-content.expanded {
+            padding: 0 15px 15px;
+            max-height: 200px;
+        }
+        
+        .promo-content h3 {
+            margin-bottom: 10px;
+            color: #1d1d1f;
+            font-size: 16px;
+        }
+        
+        .promo-content p {
+            margin-bottom: 10px;
+            color: #86868b;
+            font-size: 14px;
+        }
+        
+        .promo-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            color: #86868b;
+            font-size: 14px;
+        }
+        
+        .promo-content li {
+            margin-bottom: 5px;
+        }
+        
+        .total-with-rebate {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #d2d2d7;
+        }
+        
+        .breakdown {
+            margin-bottom: 10px;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .breakdown-label {
+            color: #86868b;
+        }
+        
+        .breakdown-value {
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+        
+        .total-summary {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0077ed;
+        }
+        
+        .total-label {
+            color: #1d1d1f;
+        }
+        
+        .total-value {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 頁面頂部 HEADER -->
+        <div class="page-header">
+            <div class="logo-section">
+                <img src="images/LouBestHK_Logo.png" alt="老Best的大自在空間 Logo">
+                <div class="site-title">老Best的大自在空間</div>
+            </div>
+            <a href="https://youtube.com/channel/UCcNIfZr5U1b1_-74BY-LBuA/" target="_blank" class="youtube-link">
+                <svg class="youtube-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                訪問我的 YouTube 頻道
+            </a>
+        </div>
+
+        <header>
+            <a href="index.html" class="back-link">← 返回首頁</a>
+            <h1>馬拉松儲蓄戶口</h1>
+        </header>
+
+        <main>
+            <section class="video-section">
+                <h2>渣打活期馬拉松儲蓄戶口分析</h2>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/LwUs76HHxQg?si=JJhMAEQUH7v7HLDX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section class="content">
+                <h2>為什麼選擇馬拉松儲蓄戶口？</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>高利率回報</h3>
+                        <p>享受市場領先的儲蓄利率，讓您的資金穩健增長</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>靈活存取</h3>
+                        <p>隨時存取資金，同時保持高收益</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>零手續費</h3>
+                        <p>無任何隱藏收費，每一分錢都在為您工作</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="calculator">
+                <h2>渣打馬拉松儲蓄戶口收益計算機</h2>
+                
+                <!-- 货币分页 -->
+                <div class="currency-tabs">
+                    <button class="tab-button active" onclick="switchCurrency('hkd', this)">港元</button>
+                    <button class="tab-button" onclick="switchCurrency('usd', this)">美元</button>
+                </div>
+
+                <!-- 港元内容 -->
+                <div id="hkd-content" class="tab-content active">
+                    <div class="phases-container">
+                        <!-- 第一階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">1</div>
+                                首階段（開戶日至2025年11月2日）
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-start-date">開戶日期</label>
+                                <input type="date" id="hkd-start-date" min="2024-01-01" max="2025-11-02" onchange="calculatePhase('hkd', 1)">
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase1-rate" value="1.6" step="0.01" min="0" onchange="calculatePhase('hkd', 1)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase1-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase1-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 1)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase1-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第二階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">2</div>
+                                第二階段（2025年11月3日至30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase2-rate" value="1.8" step="0.01" min="0" onchange="calculatePhase('hkd', 2)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase2-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase2-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 2)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase2-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第三階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">3</div>
+                                第三階段（2025年12月1日至2026年1月5日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase3-rate" value="3.2" step="0.01" min="0" onchange="calculatePhase('hkd', 3)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase3-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase3-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 3)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase3-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 美元内容 -->
+                <div id="usd-content" class="tab-content">
+                    <div class="phases-container">
+                        <!-- 第一階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">1</div>
+                                首階段（開戶日至2025年11月2日）
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-start-date">開戶日期</label>
+                                <input type="date" id="usd-start-date" min="2024-01-01" max="2025-11-02" onchange="calculatePhase('usd', 1)">
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase1-rate" value="3.1" step="0.01" min="0" onchange="calculatePhase('usd', 1)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase1-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase1-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 1)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase1-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第二階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">2</div>
+                                第二階段（2025年11月3日至30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase2-rate" value="3.2" step="0.01" min="0" onchange="calculatePhase('usd', 2)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase2-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase2-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 2)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase2-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第三階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">3</div>
+                                第三階段（2025年12月1日至2026年1月5日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase3-rate" value="3.6" step="0.01" min="0" onchange="calculatePhase('usd', 3)">
+                                <span>%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase3-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase3-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 3)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase3-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result" id="result">
+                    <div class="result-title">總收益</div>
+                    <div class="total-result">
+                        <div id="total-currency">港元</div>
+                        <div class="total-amount" id="total-earnings">$0.00</div>
+                        <div class="cash-rebate" id="cash-rebate"></div>
+                        <div class="total-with-rebate" id="total-with-rebate" style="display: none;">
+                            <div class="breakdown">
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">基礎利率總收益：</span>
+                                    <span class="breakdown-value" id="base-interest">$0.00</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">新客戶現金回贈：</span>
+                                    <span class="breakdown-value" id="rebate-amount">$0.00</span>
+                                </div>
+                            </div>
+                            <div class="total-summary">
+                                <span class="total-label">總計：</span>
+                                <span class="total-value" id="grand-total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 优惠详情区块 -->
+                <div class="promo-details">
+                    <div class="promo-toggle" onclick="togglePromoDetails()">
+                        <span>限時優惠詳情</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="promo-content" id="promo-content">
+                        <h3>限時優惠：高達HK$1,888現金回贈</h3>
+                        <p>於2025年9月6日前開立港元指定戶口及維持以下存款結餘要求至2026年1月5日：</p>
+                        <ul>
+                            <li>✓ HK$1,000,000至HK$2,000,000: HK$688 現金回贈</li>
+                            <li>✓ HK$2,000,000或以上: HK$1,888 現金回贈</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 比较工具 -->
+                <div class="comparison-tool">
+                    <div class="comparison-header">
+                        <h3>與一般定期存款進行比較</h3>
+                        <div class="comparison-selector">
+                            <label for="comparison-period">選擇比較期</label>
+                            <select id="comparison-period" onchange="toggleComparisonInputs()">
+                                <option value="1">1個月定期存款</option>
+                                <option value="3">3個月定期存款</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-content">
+                        <!-- 1個月定期存款比較 -->
+                        <div id="one-month-comparison" class="comparison-section">
+                            <div class="comparison-inputs">
+                                <div class="input-group">
+                                    <label for="month1-rate1">首階段定期存款年利率</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="month1-rate1" value="2" step="0.01" min="0" onchange="calculateComparison()">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                    <div class="reference-earnings" id="month1-ref1">參考收益：$0.00</div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="month1-rate2">第二階段定期存款年利率</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="month1-rate2" value="2" step="0.01" min="0" onchange="calculateComparison()">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                    <div class="reference-earnings" id="month1-ref2">參考收益：$0.00</div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="month1-rate3">第三階段定期存款年利率</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="month1-rate3" value="2" step="0.01" min="0" onchange="calculateComparison()">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                    <div class="reference-earnings" id="month1-ref3">參考收益：$0.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3個月定期存款比較 -->
+                        <div id="three-month-comparison" class="comparison-section" style="display: none;">
+                            <div class="comparison-inputs">
+                                <div class="input-group">
+                                    <label for="month3-rate">3個月定期存款年利率</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="month3-rate" value="2.5" step="0.01" min="0" onchange="calculateComparison()">
+                                        <span class="input-suffix">%</span>
+                                    </div>
+                                    <div class="reference-earnings" id="month3-ref">參考收益：$0.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 比較結果 -->
+                        <div class="comparison-result">
+                            <div class="result-row">
+                                <div class="result-label">馬拉松儲蓄戶口總收益</div>
+                                <div class="result-value" id="marathon-earnings">$0.00</div>
+                            </div>
+                            <div class="result-row">
+                                <div class="result-label">一般定期存款總收益</div>
+                                <div class="result-value" id="fixed-earnings">$0.00</div>
+                            </div>
+                            <div class="result-row highlight">
+                                <div class="result-label">收益差額</div>
+                                <div class="result-value">
+                                    <span id="earnings-difference">$0.00</span>
+                                    <span id="comparison-emoji">🤔</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="referral-section">
+                    <div class="referral-title">老Best 好友推薦連結</div>
+                    <a href="https://www.sc.com/hk/zh/referral/?p=marathon&referid=E4309937" target="_blank" class="referral-link">
+                        https://www.sc.com/hk/zh/referral/?p=marathon&referid=E4309937
+                    </a>
+                    <p class="referral-description">
+                        透過老Best好友推薦申請，可令老Best收到一些推薦回贈, 雖然不能令老Best發家至富，但令老Best心懷感激及安慰。
+                    </p>
+                </div>
+
+                <div class="note">
+                    <strong>注意：</strong>
+                    <ul>
+                        <li>以上計算結果僅供參考，實際收益可能因市場情況而有所變動</li>
+                        <li>收益計算基於單利計算方式</li>
+                        <li>港元一年按365天計算，美元一年按360天計算</li>
+                        <li>實際利率以銀行公佈為準</li>
+                        <li>此產品只適合新資金存款</li>
+                        <li>產品網頁詳情可參考：<a href="https://www.sc.com/hk/zh/deposits/marathon-savings-account/" target="_blank">https://www.sc.com/hk/zh/deposits/marathon-savings-account/</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <a href="mailto:LouBestHK@gmail.com" class="footer-contact">LouBestHK@gmail.com</a>
+                <div class="footer-copyright">&copy; 2025 老Best的大自在空間 保留所有權利</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="alert" id="alert">
+        <div class="alert-title">存款金額提示</div>
+        <div class="alert-message" id="alert-message"></div>
+        <button class="alert-button" onclick="closeAlert()">確定</button>
+    </div>
+
+    <script>
+        let currentCurrency = 'hkd';
+
+        // 格式化金額，添加千位符號
+        function formatAmount(amount) {
+            return amount.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function switchCurrency(currency, buttonElement) {
+            // 更新分页按钮状态
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            buttonElement.classList.add('active');
+
+            // 更新内容显示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${currency}-content`).classList.add('active');
+
+            currentCurrency = currency;
+            
+            // 更新总收益显示的货币
+            document.getElementById('total-currency').textContent = currency === 'hkd' ? '港元' : '美元';
+            
+            // 根据货币设置比较工具的默认利率
+            if (currency === 'hkd') {
+                // 港币默认利率
+                document.getElementById('month1-rate1').value = 2;
+                document.getElementById('month1-rate2').value = 2;
+                document.getElementById('month1-rate3').value = 2;
+                document.getElementById('month3-rate').value = 2.5;
+            } else {
+                // 美元默认利率
+                document.getElementById('month1-rate1').value = 2.5;
+                document.getElementById('month1-rate2').value = 2.5;
+                document.getElementById('month1-rate3').value = 2.5;
+                document.getElementById('month3-rate').value = 3.6;
+            }
+            
+            // 如果切换到港币，更新现金回赠显示
+            if (currency === 'hkd') {
+                updateCashRebate();
+            } else {
+                document.getElementById('cash-rebate').textContent = "";
+                document.getElementById('total-with-rebate').style.display = 'none';
+            }
+            
+            // 重新计算总收益
+            calculateTotal();
+            calculateComparison();
+        }
+
+        function validateAmount(currency) {
+            const minAmount = currency === 'hkd' ? 10000 : 2000;
+            const maxAmount = currency === 'hkd' ? 10000000 : 1300000;
+            
+            for (let i = 1; i <= 3; i++) {
+                const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
+                
+                if (amount < minAmount) {
+                    showAlert(`存款金額不能少於 ${currency === 'hkd' ? 'HK$' : 'US$'}${formatAmount(minAmount)}`);
+                    document.getElementById(`${currency}-phase${i}-amount`).value = minAmount;
+                    return;
+                }
+                
+                if (amount > maxAmount) {
+                    showAlert(`存款金額不能多於 ${currency === 'hkd' ? 'HK$' : 'US$'}${formatAmount(maxAmount)}`);
+                    document.getElementById(`${currency}-phase${i}-amount`).value = maxAmount;
+                    return;
+                }
+            }
+        }
+
+        function showAlert(message) {
+            document.getElementById('alert-message').textContent = message;
+            document.getElementById('alert').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+        }
+
+        function closeAlert() {
+            document.getElementById('alert').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        function calculatePhase(currency, phase) {
+            const amount = parseFloat(document.getElementById(`${currency}-phase${phase}-amount`).value) || 0;
+            const rate = parseFloat(document.getElementById(`${currency}-phase${phase}-rate`).value) || 0;
+            
+            // 计算阶段收益
+            let daysInPhase = 0;
+            if (phase === 1) {
+                // 第一阶段：用户选择的開戶日至2025年11月2日
+                const startDateInput = document.getElementById(`${currency}-start-date`);
+                const startDate = startDateInput.value ? new Date(startDateInput.value) : new Date();
+                const endDate = new Date('2025-11-02');
+                daysInPhase = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                
+                // 确保天数不为负数
+                if (daysInPhase < 0) {
+                    daysInPhase = 0;
+                }
+            } else if (phase === 2) {
+                // 第二阶段：2025年11月3日至30日
+                daysInPhase = 28; // 11月3日到11月30日
+            } else if (phase === 3) {
+                // 第三阶段：2025年12月1日至2026年1月5日
+                daysInPhase = 36; // 12月1日到1月5日
+            }
+            
+            // 根据货币选择不同的天数
+            const daysInYear = currency === 'hkd' ? 365 : 360;
+            const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+            
+            // 更新阶段收益显示
+            document.getElementById(`${currency}-phase${phase}-earnings`).textContent = 
+                `期內收益：$${formatAmount(earnings)}`;
+            
+            // 如果是第3阶段且是港币，更新现金回赠显示
+            if (phase === 3 && currency === 'hkd') {
+                updateCashRebate();
+            }
+            
+            // 如果是当前显示的货币，更新总收益
+            if (currency === currentCurrency) {
+                calculateTotal();
+                calculateComparison();
+            }
+        }
+
+        // 獲取總收益
+        function getTotalEarnings() {
+            let totalEarnings = 0;
+            
+            // 计算当前货币所有阶段的收益总和
+            for (let i = 1; i <= 3; i++) {
+                const amount = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-amount`).value) || 0;
+                const rate = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-rate`).value) || 0;
+                
+                let daysInPhase = 0;
+                if (i === 1) {
+                    const startDateInput = document.getElementById(`${currentCurrency}-start-date`);
+                    const startDate = startDateInput.value ? new Date(startDateInput.value) : new Date();
+                    const endDate = new Date('2025-11-02');
+                    daysInPhase = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                    
+                    // 确保天数不为负数
+                    if (daysInPhase < 0) {
+                        daysInPhase = 0;
+                    }
+                } else if (i === 2) {
+                    daysInPhase = 28;
+                } else if (i === 3) {
+                    daysInPhase = 36;
+                }
+                
+                // 根据货币选择不同的天数
+                const daysInYear = currentCurrency === 'hkd' ? 365 : 360;
+                const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+                totalEarnings += earnings;
+            }
+            
+            return totalEarnings;
+        }
+
+        function calculateTotal() {
+            const totalEarnings = getTotalEarnings();
+            
+            // 更新总收益显示
+            document.getElementById('total-earnings').textContent = 
+                `$${formatAmount(totalEarnings)}`;
+                
+            return totalEarnings;
+        }
+
+        // 切換比較輸入框
+        function toggleComparisonInputs() {
+            const period = document.getElementById('comparison-period').value;
+            const oneMonthComparison = document.getElementById('one-month-comparison');
+            const threeMonthComparison = document.getElementById('three-month-comparison');
+            
+            if (period === '1') {
+                oneMonthComparison.style.display = 'block';
+                threeMonthComparison.style.display = 'none';
+            } else {
+                oneMonthComparison.style.display = 'none';
+                threeMonthComparison.style.display = 'block';
+            }
+            
+            calculateComparison();
+        }
+
+        // 計算比較結果
+        function calculateComparison() {
+            const marathonEarnings = getTotalEarnings();
+            let fixedEarnings = 0;
+            const period = document.getElementById('comparison-period').value;
+            const currency = currentCurrency;
+            
+            if (period === '1') {
+                // 1個月定期存款比較
+                for (let i = 1; i <= 3; i++) {
+                    const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
+                    const rate = parseFloat(document.getElementById(`month1-rate${i}`).value) || 0;
+                    
+                    let daysInPhase = 0;
+                    if (i === 1) {
+                        const startDateInput = document.getElementById(`${currency}-start-date`);
+                        const startDate = startDateInput.value ? new Date(startDateInput.value) : new Date();
+                        const endDate = new Date('2025-11-02');
+                        daysInPhase = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                        
+                        if (daysInPhase < 0) {
+                            daysInPhase = 0;
+                        }
+                    } else if (i === 2) {
+                        daysInPhase = 28;
+                    } else if (i === 3) {
+                        daysInPhase = 36;
+                    }
+                    
+                    const daysInYear = currency === 'hkd' ? 365 : 360;
+                    const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+                    fixedEarnings += earnings;
+                    
+                    // 更新参考收益显示
+                    document.getElementById(`month1-ref${i}`).textContent = 
+                        `參考收益：$${formatAmount(earnings)}`;
+                }
+            } else {
+                // 3個月定期存款比較
+                const amount = parseFloat(document.getElementById(`${currency}-phase1-amount`).value) || 0;
+                const rate = parseFloat(document.getElementById('month3-rate').value) || 0;
+                
+                // 計算總天數
+                let totalDays = 0;
+                for (let i = 1; i <= 3; i++) {
+                    if (i === 1) {
+                        const startDateInput = document.getElementById(`${currency}-start-date`);
+                        const startDate = startDateInput.value ? new Date(startDateInput.value) : new Date();
+                        const endDate = new Date('2025-11-02');
+                        totalDays += Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                        
+                        if (totalDays < 0) {
+                            totalDays = 0;
+                        }
+                    } else if (i === 2) {
+                        totalDays += 28;
+                    } else if (i === 3) {
+                        totalDays += 36;
+                    }
+                }
+                
+                const daysInYear = currency === 'hkd' ? 365 : 360;
+                fixedEarnings = amount * (rate / 100 / daysInYear) * totalDays;
+                
+                // 更新参考收益显示
+                document.getElementById('month3-ref').textContent = 
+                    `參考收益：$${formatAmount(fixedEarnings)}`;
+            }
+            
+            // 更新比較結果顯示
+            document.getElementById('marathon-earnings').textContent = `$${formatAmount(marathonEarnings)}`;
+            document.getElementById('fixed-earnings').textContent = `$${formatAmount(fixedEarnings)}`;
+            
+            const difference = marathonEarnings - fixedEarnings;
+            const differenceElement = document.getElementById('earnings-difference');
+            differenceElement.textContent = `${difference >= 0 ? '+' : ''}$${formatAmount(Math.abs(difference))}`;
+            
+            // 更新比較結果表情符號
+            const emojiElement = document.getElementById('comparison-emoji');
+            if (difference > 0) {
+                emojiElement.textContent = '😍'; // 馬拉松收益更高
+            } else if (difference < 0) {
+                emojiElement.textContent = '😢'; // 定期存款收益更高
+            } else {
+                emojiElement.textContent = '🤝'; // 收益相同
+            }
+        }
+
+        // 切换优惠详情显示/隐藏
+        function togglePromoDetails() {
+            const promoContent = document.getElementById('promo-content');
+            const toggleIcon = document.querySelector('.toggle-icon');
+            
+            if (promoContent.classList.contains('expanded')) {
+                promoContent.classList.remove('expanded');
+                toggleIcon.textContent = '▼';
+            } else {
+                promoContent.classList.add('expanded');
+                toggleIcon.textContent = '▲';
+            }
+        }
+
+        // 更新现金回赠显示
+        function updateCashRebate() {
+            const currency = currentCurrency;
+            const amount = parseFloat(document.getElementById(`${currency}-phase3-amount`).value) || 0;
+            const cashRebateElement = document.getElementById('cash-rebate');
+            const totalWithRebateElement = document.getElementById('total-with-rebate');
+            const baseInterestElement = document.getElementById('base-interest');
+            const rebateAmountElement = document.getElementById('rebate-amount');
+            const grandTotalElement = document.getElementById('grand-total');
+            
+            // 获取基础利率总收益
+            const baseInterest = getTotalEarnings();
+            baseInterestElement.textContent = `$${formatAmount(baseInterest)}`;
+            
+            if (currency === 'hkd') {
+                let rebateAmount = 0;
+                let rebateText = "";
+                
+                if (amount >= 1000000 && amount < 2000000) {
+                    rebateAmount = 688;
+                    rebateText = "+ 新客戶享HK$688 現金回贈";
+                } else if (amount >= 2000000) {
+                    rebateAmount = 1888;
+                    rebateText = "+ 新客戶享HK$1,888 現金回贈";
+                }
+                
+                cashRebateElement.textContent = rebateText;
+                rebateAmountElement.textContent = `$${formatAmount(rebateAmount)}`;
+                
+                // 计算总计
+                const grandTotal = baseInterest + rebateAmount;
+                grandTotalElement.textContent = `$${formatAmount(grandTotal)}`;
+                
+                // 如果有回赠，显示总计区域
+                if (rebateAmount > 0) {
+                    totalWithRebateElement.style.display = 'block';
+                } else {
+                    totalWithRebateElement.style.display = 'none';
+                }
+            } else {
+                cashRebateElement.textContent = "";
+                totalWithRebateElement.style.display = 'none';
+            }
+        }
+
+        // 页面加载时计算一次
+        window.onload = function() {
+            // 设置默认日期为今天
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('hkd-start-date').value = today;
+            document.getElementById('usd-start-date').value = today;
+            
+            // 根据当前货币设置比较工具的默认利率
+            if (currentCurrency === 'hkd') {
+                // 港币默认利率
+                document.getElementById('month1-rate1').value = 2;
+                document.getElementById('month1-rate2').value = 2;
+                document.getElementById('month1-rate3').value = 2;
+                document.getElementById('month3-rate').value = 2.5;
+            } else {
+                // 美元默认利率
+                document.getElementById('month1-rate1').value = 2.5;
+                document.getElementById('month1-rate2').value = 2.5;
+                document.getElementById('month1-rate3').value = 2.5;
+                document.getElementById('month3-rate').value = 3.6;
+            }
+            
+            // 计算所有阶段的收益
+            ['hkd', 'usd'].forEach(currency => {
+                for (let i = 1; i <= 3; i++) {
+                    calculatePhase(currency, i);
+                }
+            });
+            
+            // 初始化比较工具
+            calculateComparison();
+            
+            // 初始化现金回赠显示
+            updateCashRebate();
+        };
+    </script>
+</body>
+</html>

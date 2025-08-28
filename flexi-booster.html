@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOX Flexi boost savings 高息活存 - 老Best的大自在空間</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 頁面頂部 HEADER -->
+        <div class="page-header">
+            <div class="logo-section">
+                <img src="images/LouBestHK_Logo.png" alt="老Best的大自在空間 Logo">
+                <div class="site-title">老Best的大自在空間</div>
+            </div>
+            <a href="https://youtube.com/channel/UCcNIfZr5U1b1_-74BY-LBuA/" target="_blank" class="youtube-link">
+                <svg class="youtube-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                訪問我的 YouTube 頻道
+            </a>
+        </div>
+
+        <header>
+            <a href="index.html" class="back-link">← 返回首頁</a>
+            <h1>MOX Flexi boost savings 高息活存</h1>
+        </header>
+
+        <main>
+            <section class="content">
+                <h2>為什麼選擇 MOX Flexi boost savings 高息活存？</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>高利率回報</h3>
+                        <p>享受市場領先的儲蓄利率，讓您的資金穩健增長</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>靈活存取</h3>
+                        <p>隨時存取資金，同時保持高收益</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>零手續費</h3>
+                        <p>無任何隱藏收費，每一分錢都在為您工作</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="calculator">
+                <h2>MOX Flexi boost savings 高息活存收益計算機</h2>
+                
+                <!-- 货币分页 -->
+                <div class="currency-tabs">
+                    <button class="tab-button active" onclick="switchCurrency('hkd', this)">港元</button>
+                    <button class="tab-button" onclick="switchCurrency('usd', this)">美元</button>
+                </div>
+
+                <!-- 港元内容 -->
+                <div id="hkd-content" class="tab-content active">
+                    <div class="phases-container">
+                        <!-- 第一階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">1</div>
+                                首階段（首30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase1-rate" value="0.3" step="0.01" min="0" onchange="calculatePhase('hkd', 1)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase1-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase1-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 1)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase1-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第二階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">2</div>
+                                第二階段（其後30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase2-rate" value="0.5" step="0.01" min="0" onchange="calculatePhase('hkd', 2)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase2-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase2-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 2)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase2-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第三階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">3</div>
+                                第三階段（最後30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="hkd-phase3-rate" value="3" step="0.01" min="0" onchange="calculatePhase('hkd', 3)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="hkd-phase3-amount">存款金額 (HKD)</label>
+                                <input type="number" id="hkd-phase3-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 3)">
+                            </div>
+                            <div class="earnings-display" id="hkd-phase3-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 總收益 -->
+                    <div class="result" id="hkd-result">
+                        <div class="result-title">總收益</div>
+                        <div class="total-result">
+                            <div class="total-amount" id="hkd-total-earnings">$0.00</div>
+                        </div>
+                    </div>
+
+                    <!-- 港元比較工具 -->
+                    <div class="comparison-tool">
+                        <div class="comparison-header">
+                            <h3>與一般定期存款進行比較</h3>
+                            <div class="comparison-selector">
+                                <label for="hkd-comparison-period">選擇比較期</label>
+                                <select id="hkd-comparison-period" onchange="toggleComparisonInputs('hkd')">
+                                    <option value="1">1個月定期存款</option>
+                                    <option value="3">3個月定期存款</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-content">
+                            <!-- 1個月定期存款比較 -->
+                            <div id="hkd-one-month-comparison" class="comparison-section">
+                                <div class="comparison-inputs">
+                                    <div class="input-group">
+                                        <label for="hkd-month1-rate1">首30日定期存款年利率 (HKD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="hkd-month1-rate1" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="hkd-month1-ref1">參考收益：$0.00</div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="hkd-month1-rate2">其後30日定期存款年利率 (HKD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="hkd-month1-rate2" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="hkd-month1-ref2">參考收益：$0.00</div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="hkd-month1-rate3">最後30日定期存款年利率 (HKD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="hkd-month1-rate3" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="hkd-month1-ref3">參考收益：$0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 3個月定期存款比較 -->
+                            <div id="hkd-three-month-comparison" class="comparison-section" style="display: none;">
+                                <div class="comparison-inputs">
+                                    <div class="input-group">
+                                        <label for="hkd-month3-rate">3個月定期存款年利率 (HKD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="hkd-month3-rate" value="1.5" step="0.01" min="0" onchange="calculateComparison('hkd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="hkd-month3-ref">參考收益：$0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 比較結果 -->
+                            <div class="comparison-result">
+                                <div class="result-row">
+                                    <div class="result-label">MOX Flexi boost savings 高息活存總收益</div>
+                                    <div class="result-value" id="hkd-flexi-earnings">$0.00</div>
+                                </div>
+                                <div class="result-row">
+                                    <div class="result-label">一般定期存款總收益</div>
+                                    <div class="result-value" id="hkd-fixed-earnings">$0.00</div>
+                                </div>
+                                <div class="result-row highlight">
+                                    <div class="result-label">收益差額</div>
+                                    <div class="result-value">
+                                        <span id="hkd-earnings-difference">$0.00</span>
+                                        <span id="hkd-comparison-emoji">🤔</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 美元内容 -->
+                <div id="usd-content" class="tab-content">
+                    <div class="phases-container">
+                        <!-- 第一階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">1</div>
+                                首階段（首30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase1-rate" value="1.5" step="0.01" min="0" onchange="calculatePhase('usd', 1)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase1-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase1-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 1)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase1-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第二階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">2</div>
+                                第二階段（其後30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase2-rate" value="3.5" step="0.01" min="0" onchange="calculatePhase('usd', 2)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase2-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase2-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 2)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase2-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+
+                        <!-- 第三階段 -->
+                        <div class="phase-section">
+                            <div class="phase-title">
+                                <div class="phase-number">3</div>
+                                第三階段（最後30日）
+                            </div>
+                            <div class="rate-input-group">
+                                <span class="rate-label">年利率：</span>
+                                <input type="number" class="rate-input" id="usd-phase3-rate" value="6" step="0.01" min="0" onchange="calculatePhase('usd', 3)">
+                                <span class="percent-sign">%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usd-phase3-amount">存款金額 (USD)</label>
+                                <input type="number" id="usd-phase3-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 3)">
+                            </div>
+                            <div class="earnings-display" id="usd-phase3-earnings">
+                                期內收益：$0.00
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 總收益 -->
+                    <div class="result" id="usd-result">
+                        <div class="result-title">總收益</div>
+                        <div class="total-result">
+                            <div class="total-amount" id="usd-total-earnings">$0.00</div>
+                        </div>
+                    </div>
+
+                    <!-- 美元比較工具 -->
+                    <div class="comparison-tool">
+                        <div class="comparison-header">
+                            <h3>與一般定期存款進行比較</h3>
+                            <div class="comparison-selector">
+                                <label for="usd-comparison-period">選擇比較期</label>
+                                <select id="usd-comparison-period" onchange="toggleComparisonInputs('usd')">
+                                    <option value="1">1個月定期存款</option>
+                                    <option value="3">3個月定期存款</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-content">
+                            <!-- 1個月定期存款比較 -->
+                            <div id="usd-one-month-comparison" class="comparison-section">
+                                <div class="comparison-inputs">
+                                    <div class="input-group">
+                                        <label for="usd-month1-rate1">首30日定期存款年利率 (USD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="usd-month1-rate1" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="usd-month1-ref1">參考收益：$0.00</div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="usd-month1-rate2">其後30日定期存款年利率 (USD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="usd-month1-rate2" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="usd-month1-ref2">參考收益：$0.00</div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="usd-month1-rate3">最後30日定期存款年利率 (USD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="usd-month1-rate3" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="usd-month1-ref3">參考收益：$0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 3個月定期存款比較 -->
+                            <div id="usd-three-month-comparison" class="comparison-section" style="display: none;">
+                                <div class="comparison-inputs">
+                                    <div class="input-group">
+                                        <label for="usd-month3-rate">3個月定期存款年利率 (USD)</label>
+                                        <div class="input-wrapper">
+                                            <input type="number" id="usd-month3-rate" value="3.5" step="0.01" min="0" onchange="calculateComparison('usd')">
+                                            <span class="input-suffix">%</span>
+                                        </div>
+                                        <div class="reference-earnings" id="usd-month3-ref">參考收益：$0.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 比較結果 -->
+                            <div class="comparison-result">
+                                <div class="result-row">
+                                    <div class="result-label">MOX Flexi boost savings 高息活存總收益</div>
+                                    <div class="result-value" id="usd-flexi-earnings">$0.00</div>
+                                </div>
+                                <div class="result-row">
+                                    <div class="result-label">一般定期存款總收益</div>
+                                    <div class="result-value" id="usd-fixed-earnings">$0.00</div>
+                                </div>
+                                <div class="result-row highlight">
+                                    <div class="result-label">收益差額</div>
+                                    <div class="result-value">
+                                        <span id="usd-earnings-difference">$0.00</span>
+                                        <span id="usd-comparison-emoji">🤔</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="referral-section">
+                    <div class="referral-title">老Best 好友推薦代碼</div>
+                    <div class="referral-code">DHEGEW</div>
+                    <div class="referral-expiry">優惠至2025年9月3日</div>
+                    <p class="referral-description">
+                        透過老Best好友推薦申請，可令老Best收到一些推薦回贈, 雖然不能令老Best發家至富，但令老Best心懷感激及安慰。
+                    </p>
+                </div>
+
+                <div class="note">
+                    <strong>注意：</strong>
+                    <ul>
+                        <li>以上計算結果僅供參考，實際收益可能因市場情況而有所變動</li>
+                        <li>收益計算基於單利計算方式</li>
+                        <li>港元一年按365天計算，美元一年按360天計算</li>
+                        <li>實際利率以銀行公佈為準</li>
+                        <li>詳情請參考產品網頁：<a href="https://mox.com/zh/promotions/flexiboostsavings/" target="_blank">https://mox.com/zh/promotions/flexiboostsavings/</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+<footer>
+    <div class="footer-content">
+        <a href="mailto:LouBestHK@gmail.com" class="footer-contact">LouBestHK@gmail.com</a>
+        <div class="footer-copyright">&copy; 2025 老Best的大自在空間 保留所有權利</div>
+    </div>
+</footer>
+
+    </div>
+
+    <!-- 提示框 -->
+    <div class="overlay" id="overlay"></div>
+    <div class="alert" id="alert">
+        <div class="alert-title">存款金額提示</div>
+        <div class="alert-message" id="alert-message"></div>
+        <button class="alert-button" onclick="closeAlert()">確定</button>
+    </div>
+
+    <script>
+        let currentCurrency = 'hkd';
+
+        // 格式化金額，添加千位符號
+        function formatAmount(amount) {
+            return amount.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function switchCurrency(currency, buttonElement) {
+            // 更新分页按钮状态
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            buttonElement.classList.add('active');
+
+            // 更新内容显示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${currency}-content`).classList.add('active');
+
+            currentCurrency = currency;
+            
+            // 重新计算总收益
+            calculateTotal();
+            calculateComparison(currency);
+        }
+
+        function validateAmount(currency) {
+            const minAmount = currency === 'hkd' ? 10000 : 2000;
+            const maxAmount = currency === 'hkd' ? 10000000 : 1300000;
+            
+            for (let i = 1; i <= 3; i++) {
+                const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
+                
+                if (amount < minAmount) {
+                    showAlert(`存款金額不能少於 ${currency === 'hkd' ? 'HK$' : 'US$'}${formatAmount(minAmount)}`);
+                    document.getElementById(`${currency}-phase${i}-amount`).value = minAmount;
+                    return;
+                }
+                
+                if (amount > maxAmount) {
+                    showAlert(`存款金額不能多於 ${currency === 'hkd' ? 'HK$' : 'US$'}${formatAmount(maxAmount)}`);
+                    document.getElementById(`${currency}-phase${i}-amount`).value = maxAmount;
+                    return;
+                }
+            }
+        }
+
+        function showAlert(message) {
+            document.getElementById('alert-message').textContent = message;
+            document.getElementById('alert').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+        }
+
+        function closeAlert() {
+            document.getElementById('alert').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        function calculatePhase(currency, phase) {
+            const amount = parseFloat(document.getElementById(`${currency}-phase${phase}-amount`).value) || 0;
+            const rate = parseFloat(document.getElementById(`${currency}-phase${phase}-rate`).value) || 0;
+            
+            // 每个阶段都是30天
+            const daysInPhase = 30;
+            
+            // 根据货币选择不同的天数
+            const daysInYear = currency === 'hkd' ? 365 : 360;
+            const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+            
+            // 更新阶段收益显示
+            document.getElementById(`${currency}-phase${phase}-earnings`).textContent = 
+                `期內收益：$${formatAmount(earnings)}`;
+            
+            // 如果是当前显示的货币，更新总收益
+            if (currency === currentCurrency) {
+                calculateTotal();
+                calculateComparison(currency);
+            }
+        }
+
+        function calculateTotal() {
+            let totalEarnings = 0;
+            
+            // 计算当前货币所有阶段的收益总和
+            for (let i = 1; i <= 3; i++) {
+                const amount = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-amount`).value) || 0;
+                const rate = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-rate`).value) || 0;
+                
+                // 每个阶段都是30天
+                const daysInPhase = 30;
+                
+                // 根据货币选择不同的天数
+                const daysInYear = currentCurrency === 'hkd' ? 365 : 360;
+                const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+                totalEarnings += earnings;
+            }
+            
+            // 更新总收益显示
+            document.getElementById(`${currentCurrency}-total-earnings`).textContent = 
+                `$${formatAmount(totalEarnings)}`;
+                
+            return totalEarnings;
+        }
+
+        // 切換比較輸入框
+        function toggleComparisonInputs(currency) {
+            const period = document.getElementById(`${currency}-comparison-period`).value;
+            const oneMonthComparison = document.getElementById(`${currency}-one-month-comparison`);
+            const threeMonthComparison = document.getElementById(`${currency}-three-month-comparison`);
+            
+            if (period === '1') {
+                oneMonthComparison.style.display = 'block';
+                threeMonthComparison.style.display = 'none';
+            } else {
+                oneMonthComparison.style.display = 'none';
+                threeMonthComparison.style.display = 'block';
+            }
+            
+            calculateComparison(currency);
+        }
+
+        // 計算比較結果
+        function calculateComparison(currency) {
+            const flexiEarnings = calculateTotal();
+            let fixedEarnings = 0;
+            const period = document.getElementById(`${currency}-comparison-period`).value;
+            
+            if (period === '1') {
+                // 1個月定期存款比較
+                for (let i = 1; i <= 3; i++) {
+                    const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
+                    const rate = parseFloat(document.getElementById(`${currency}-month1-rate${i}`).value) || 0;
+                    
+                    const daysInPhase = 30;
+                    const daysInYear = currency === 'hkd' ? 365 : 360;
+                    const earnings = amount * (rate / 100 / daysInYear) * daysInPhase;
+                    fixedEarnings += earnings;
+                    
+                    // 更新参考收益显示
+                    document.getElementById(`${currency}-month1-ref${i}`).textContent = 
+                        `參考收益：$${formatAmount(earnings)}`;
+                }
+            } else {
+                // 3個月定期存款比較
+                const amount = parseFloat(document.getElementById(`${currency}-phase1-amount`).value) || 0;
+                const rate = parseFloat(document.getElementById(`${currency}-month3-rate`).value) || 0;
+                
+                const daysInPeriod = 90; // 3個月
+                const daysInYear = currency === 'hkd' ? 365 : 360;
+                fixedEarnings = amount * (rate / 100 / daysInYear) * daysInPeriod;
+                
+                // 更新参考收益显示
+                document.getElementById(`${currency}-month3-ref`).textContent = 
+                    `參考收益：$${formatAmount(fixedEarnings)}`;
+            }
+            
+            // 更新比較結果顯示
+            document.getElementById(`${currency}-flexi-earnings`).textContent = `$${formatAmount(flexiEarnings)}`;
+            document.getElementById(`${currency}-fixed-earnings`).textContent = `$${formatAmount(fixedEarnings)}`;
+            
+            const difference = flexiEarnings - fixedEarnings;
+            const differenceElement = document.getElementById(`${currency}-earnings-difference`);
+            differenceElement.textContent = `${difference >= 0 ? '+' : ''}$${formatAmount(Math.abs(difference))}`;
+            
+            // 更新比較結果表情符號
+            const emojiElement = document.getElementById(`${currency}-comparison-emoji`);
+            if (difference > 0) {
+                emojiElement.textContent = '😍'; // MOX收益更高
+            } else if (difference < 0) {
+                emojiElement.textContent = '😢'; // 定期存款收益更高
+            } else {
+                emojiElement.textContent = '🤝'; // 收益相同
+            }
+        }
+
+        // 页面加载时计算一次
+        window.onload = function() {
+            // 计算所有阶段的收益
+            ['hkd', 'usd'].forEach(currency => {
+                for (let i = 1; i <= 3; i++) {
+                    calculatePhase(currency, i);
+                }
+            });
+            
+            // 初始化比较工具
+            calculateComparison('hkd');
+            calculateComparison('usd');
+        };
+    </script>
+</body>
+</html>
