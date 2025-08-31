@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老Best的大自在空間</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+    <style>
+        /* 使用特定前缀的样式，避免与现有样式冲突 */
+        .hibor-data-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .hibor-data-card {
+            background-color: #ffffff;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .hibor-data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .hibor-data-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .hibor-data-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0071e3;
+            margin-bottom: 8px;
+        }
+
+        .hibor-data-unit {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .hibor-last-updated {
+            font-size: 12px;
+            color: #86868b;
+            margin-top: 16px;
+        }
+
+        .hibor-page-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hibor-page-header-content {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hibor-page-header-content h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .hibor-data-update-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #86868b;
+            text-align: center;
+        }
+
+        /* 历史数据功能样式 */
+        .historical-data-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .historical-data-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f7;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-panel label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+
+        .control-panel input[type="date"],
+        .control-panel select {
+            margin-left: 8px;
+            padding: 8px 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #ffffff;
+        }
+
+        .search-button {
+            padding: 8px 20px;
+            background-color: #0071e3;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #0077ed;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th {
+            background-color: #f5f5f7;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 14px;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-top: 1px solid #f5f5f7;
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9fb;
+        }
+
+        .data-table tr:hover {
+            background-color: #f5f5f7;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pagination-button {
+            padding: 8px 16px;
+            background-color: #ffffff;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1d1d1f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-button:hover:not(:disabled) {
+            background-color: #f5f5f7;
+        }
+
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #page-info {
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        .loading, .no-data, .error {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        /* 默认预载数据范围样式 */
+        .default-data-range {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #86868b;
+            padding: 10px;
+            background-color: #f9f9fb;
+            border-radius: 8px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .control-panel label {
+                justify-content: space-between;
+            }
+            
+            .data-table {
+                font-size: 12px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <!-- Header内容将通过JavaScript动态加载 -->
+        </header>
+        
+        <div class="hibor-page-content">
+            <div class="hibor-page-header-content">
+                <h1>香港銀行體系結餘與利率數據</h1>
+                <div class="hibor-data-update-info">
+                    <span id="hibor-data-date">數據載入中...</span>
+                </div>
+            </div>
+            
+            <div class="hibor-data-cards-container">
+                <div class="hibor-data-card">
+                    <h3>收市總結餘</h3>
+                    <div class="hibor-data-value" id="closing-balance">--</div>
+                    <div class="hibor-data-unit">百萬港元</div>
+                    <div class="hibor-last-updated" id="last-updated">更新中...</div>
+                </div>
+                
+                <div class="hibor-data-card">
+                    <h3>貼現窗基本利率</h3>
+                    <div class="hibor-data-value" id="disc-win-base-rate">--</div>
+                    <div class="hibor-data-unit">年利率</div>
+                </div>
+                
+                <div class="hibor-data-card">
+                    <h3>隔夜港元銀行同業拆息</h3>
+                    <div class="hibor-data-value" id="hibor-overnight">--</div>
+                    <div class="hibor-data-unit">年利率</div>
+                </div>
+                
+                <div class="hibor-data-card">
+                    <h3>一個月期港元銀行同業拆息定價</h3>
+                    <div class="hibor-data-value" id="hibor-fixing-1m">--</div>
+                    <div class="hibor-data-unit">年利率</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <!-- Footer内容将通过JavaScript动态加载 -->
+        </footer>
+    </div>
+    
+    <script src="common.js"></script>
+</body>
+</html>

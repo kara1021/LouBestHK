@@ -1,0 +1,227 @@
+/* fx-deposit-return-styles.css - 外幣定期存款回本計算機專用樣式 */
+
+/* 計算機容器樣式 */
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* 表單樣式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-col {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+/* 統一輸入框和下拉框樣式 */
+input, select {
+    width: 100%;
+    height: 44px; /* 統一高度 */
+    padding: 0 12px;
+    border: 1px solid #d2d2d7;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    box-sizing: border-box; /* 確保padding不影響總寬度和高度 */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0077ed;
+    box-shadow: 0 0 0 3px rgba(0, 119, 237, 0.1);
+}
+
+/* 貨幣選擇器樣式 */
+.currency-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.currency-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f7;
+    margin: 0 10px;
+    font-weight: bold;
+    color: #1d1d1f;
+}
+
+.exchange-arrow {
+    margin: 0 15px;
+    color: #86868b;
+    font-size: 20px;
+}
+
+/* 按鈕樣式 */
+button {
+    background-color: #0077ed;
+    color: white;
+    border: none;
+    height: 44px; /* 與輸入框高度一致 */
+    padding: 0 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 30px auto 0;
+}
+
+button:hover {
+    background-color: #0077ed;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 119, 237, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* 結果容器樣式 */
+.result-container {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f5f5f7;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+    text-align: center;
+    font-weight: 600;
+}
+
+.result-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.result-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #1d1d1f;
+    font-weight: 600;
+}
+
+.result-item p {
+    font-size: 16px;
+    color: #1d1d1f;
+    margin: 0;
+}
+
+/* 正負數顏色樣式 */
+.positive {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.negative {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* 輔助文字樣式 */
+.info-text {
+    font-size: 14px;
+    color: #86868b;
+    margin-top: 5px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-col {
+        margin-bottom: 15px;
+    }
+    
+    .currency-selector {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .exchange-arrow {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+    
+    /* 在小屏幕上保持輸入框和下拉框的一致性 */
+    input, select, button {
+        height: 44px;
+    }
+}
+.next-action {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+.remaining-days {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.remaining-days.positive {
+    color: #28a745;
+}
+
+.remaining-days.negative {
+    color: #dc3545;
+}
+
+.action-message {
+    font-size: 0.9em;
+}
+
+.action-message.positive {
+    color: #28a745;
+}
+
+.action-message.negative {
+    color: #dc3545;
+}
