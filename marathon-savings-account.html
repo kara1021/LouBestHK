@@ -438,6 +438,7 @@
                             <li>實際利率以銀行公佈為準</li>
                             <li>此產品只適合新資金存款</li>
                             <li>產品網頁詳情可參考：<a href="https://www.sc.com/hk/zh/deposits/marathon-savings-account/" target="_blank">https://www.sc.com/hk/zh/deposits/marathon-savings-account/</a></li>
+                            <li>美元及人民幣轉出轉入涉及手續費︰渣打︰匯入免費，匯出RMB$170/收USD$22 ，每日轉帳上限等值100萬 。</li>
                         </ul>
                     </div>
                 </section>
@@ -567,10 +568,10 @@
                 }
             } else if (phase === 2) {
                 // 第二阶段：2025年11月3日至30日
-                daysInPhase = 28; // 11月3日到11月30日
+                daysInPhase = 27; // 11月3日到11月30日
             } else if (phase === 3) {
                 // 第三阶段：2025年12月1日至2026年1月5日
-                daysInPhase = 36; // 12月1日到1月5日
+                daysInPhase = 35; // 12月1日到1月5日
             }
             
             // 根据货币选择不同的天数
@@ -679,9 +680,9 @@
                             daysInPhase = 0;
                         }
                     } else if (i === 2) {
-                        daysInPhase = 28;
+                        daysInPhase = 27;
                     } else if (i === 3) {
-                        daysInPhase = 36;
+                        daysInPhase = 35;
                     }
                     
                     const daysInYear = currency === 'hkd' ? 365 : 360;

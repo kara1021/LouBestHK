@@ -249,11 +249,12 @@ main p {
 /* 卡片網格樣式 */
 .nav-grid, .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
 
 .nav-card, .feature-card {
     background: var(--card-background);
@@ -1047,6 +1048,7 @@ footer {
     
     .main-nav {
         position: static;
+        width: 100%;
     }
     
     .nav-menu {
@@ -1061,9 +1063,11 @@ footer {
         align-items: flex-start;
         padding: 20px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-120%);
+        transform: translateY(-100%);
         transition: transform 0.3s ease;
         z-index: 999;
+        max-height: calc(100vh - 48px);
+        overflow-y: auto;
     }
     
     .nav-menu.active {
@@ -1079,13 +1083,15 @@ footer {
     .nav-menu li .nav-link {
         display: block;
         width: 100%;
-        padding: 10px 0;
+        padding: 12px 0;
         height: auto;
         font-size: 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .nav-menu li:first-child .nav-link {
         display: block;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .menu-toggle {
@@ -1095,38 +1101,8 @@ footer {
     .youtube-link {
         display: none;
     }
-    
-    .nav-grid, .feature-grid, .options-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .video-container iframe {
-        height: 200px;
-    }
-
-    .phases-container {
-        flex-direction: column;
-    }
-    
-    .phase-section {
-        width: 100%;
-    }
-    
-    .comparison-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .comparison-inputs {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
-    }
 }
+
 /* 历史数据容器样式 - 数据卡片风格 */
 .historical-data-container.hibor-data-card {
     background-color: #ffffff;

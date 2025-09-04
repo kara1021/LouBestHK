@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貨幣掛鈎投資產品計算機 - 老Best的大自在空間</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <!-- Header内容将通过JavaScript动态加载 -->
+        </header>
+        <div class="page-header-content">
+                <h1>貨幣掛鈎投資產品計算機</h1>
+                <p class="product-description">貨幣掛鈎投資產品（又稱雙幣存款）是一種結構性投資產品，提供較傳統存款為高的潛在回報，但同時亦可引至虧損。<BR>投資者需選擇兩種貨幣，並設定協定匯率。<BR>到期時，如果市場匯率對投資者有利，將以基本貨幣收回本金及利息；<BR>如果市場匯率對投資者不利，則以掛鈎貨幣收回本金及利息。<BR>此計算工具可幫助您評估不同市場情況下的潛在回報與風險。<BR>注意︰此類產品不受存款保障計劃保障</p>
+            </div>
+            <main>
+                <div class="calculator-container">
+                    <div class="calculator">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="base-currency">基本貨幣</label>
+                                    <select id="base-currency" name="base-currency">
+                                        <option value="HKD">港元 (HKD)</option>
+                                        <option value="USD">美元 (USD)</option>
+                                        <option value="GBP">英鎊 (GBP)</option>
+                                        <option value="SGD">新加坡元 (SGD)</option>
+                                        <option value="EUR">歐元 (EUR)</option>
+                                        <option value="JPY">日圓 (JPY)</option>
+                                        <option value="AUD">澳元 (AUD)</option>
+                                        <option value="CAD">加拿大元 (CAD)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="linked-currency">掛鈎貨幣</label>
+                                    <select id="linked-currency" name="linked-currency">
+                                        <option value="AUD">澳元 (AUD)</option>
+                                        <option value="USD">美元 (USD)</option>
+                                        <option value="GBP">英鎊 (GBP)</option>
+                                        <option value="SGD">新加坡元 (SGD)</option>
+                                        <option value="EUR">歐元 (EUR)</option>
+                                        <option value="JPY">日圓 (JPY)</option>
+                                        <option value="HKD">港元 (HKD)</option>
+                                        <option value="CAD">加拿大元 (CAD)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="investment-amount">投資額</label>
+                                    <input type="number" id="investment-amount" name="investment-amount" min="0" step="0.01" placeholder="例如：60000">
+                                </div>
+                            </div>
+                            
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="investment-period">投資期 (日)</label>
+                                    <input type="number" id="investment-period" name="investment-period" min="1" step="1" placeholder="例如：14">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="agreed-exchange-rate">協定匯率 (掛鈎貨幣/基本貨幣)</label>
+                                    <input type="number" id="agreed-exchange-rate" name="agreed-exchange-rate" min="0" step="0.0001" placeholder="例如：6.9588">
+                                </div>
+                            </div>
+                            
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="annual-interest-rate">年息率 (%)</label>
+                                    <input type="number" id="annual-interest-rate" name="annual-interest-rate" min="0" step="0.01" placeholder="例如：16.5">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="market-exchange-rate">到期時市場匯率 (掛鈎貨幣/基本貨幣)</label>
+                            <input type="number" id="market-exchange-rate" name="market-exchange-rate" min="0" step="0.0001" placeholder="例如：7.2000 或 6.2300">
+                        </div>
+                        
+                        <div class="form-group">
+                            <button id="calculate-btn" class="calculate-btn">計算</button>
+                        </div>
+                    </div>
+                    
+                    <div id="result-container" class="result-container" style="display: none;">
+                        <div class="result-title">計算結果</div>
+                        
+                        <div id="scenario-info" class="scenario-info"></div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">利息收入</div>
+                            <div id="interest-amount" class="result-value"></div>
+                        </div>
+                        
+                        <div class="result-item">
+                            <div class="result-label">本金加利息總額</div>
+                            <div id="principal-plus-interest" class="result-value"></div>
+                        </div>
+                        
+                        <div id="scenario-1-result" class="scenario-result" style="display: none;">
+                            <div class="scenario-title">情景一：到期時市場匯率 ≥ 協定匯率</div>
+                            <div class="result-item">
+                                <div class="result-label">支付方式</div>
+                                <div class="result-value">以基本貨幣收取到期款項</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">到期現金款項</div>
+                                <div id="scenario-1-amount" class="result-value"></div>
+                            </div>
+                            <div class="result-item highlight">
+                                <div class="result-label">收益</div>
+                                <div id="scenario-1-profit" class="result-value"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="scenario-2-result" class="scenario-result" style="display: none;">
+                            <div class="scenario-title">情景二：到期時市場匯率 < 協定匯率</div>
+                            <div class="result-item">
+                                <div class="result-label">支付方式</div>
+                                <div class="result-value">以掛鈎貨幣收取到期款項</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">到期款項 (掛鈎貨幣)</div>
+                                <div id="scenario-2-linked-currency-amount" class="result-value"></div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">以基本貨幣計的最終款項</div>
+                                <div id="scenario-2-base-currency-amount" class="result-value"></div>
+                            </div>
+                            <div class="result-item highlight">
+                                <div class="result-label">盈虧</div>
+                                <div id="scenario-2-profit" class="result-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <footer>
+            <!-- Footer内容将通过JavaScript动态加载 -->
+        </footer>
+    </div>
+    
+    <script src="common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取表单元素
+            const baseCurrencySelect = document.getElementById('base-currency');
+            const linkedCurrencySelect = document.getElementById('linked-currency');
+            const investmentAmountInput = document.getElementById('investment-amount');
+            const investmentPeriodInput = document.getElementById('investment-period');
+            const agreedExchangeRateInput = document.getElementById('agreed-exchange-rate');
+            const annualInterestRateInput = document.getElementById('annual-interest-rate');
+            const marketExchangeRateInput = document.getElementById('market-exchange-rate');
+            const calculateBtn = document.getElementById('calculate-btn');
+            
+            // 获取结果显示元素
+            const resultContainer = document.getElementById('result-container');
+            const scenarioInfo = document.getElementById('scenario-info');
+            const interestAmountElement = document.getElementById('interest-amount');
+            const principalPlusInterestElement = document.getElementById('principal-plus-interest');
+            const scenario1Result = document.getElementById('scenario-1-result');
+            const scenario1AmountElement = document.getElementById('scenario-1-amount');
+            const scenario1ProfitElement = document.getElementById('scenario-1-profit');
+            const scenario2Result = document.getElementById('scenario-2-result');
+            const scenario2LinkedCurrencyAmountElement = document.getElementById('scenario-2-linked-currency-amount');
+            const scenario2BaseCurrencyAmountElement = document.getElementById('scenario-2-base-currency-amount');
+            const scenario2ProfitElement = document.getElementById('scenario-2-profit');
+            
+            // 添加计算按钮点击事件
+            calculateBtn.addEventListener('click', calculate);
+            
+            // 添加输入框回车事件
+            [investmentAmountInput, investmentPeriodInput, agreedExchangeRateInput, 
+             annualInterestRateInput, marketExchangeRateInput].forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calculate();
+                    }
+                });
+            });
+            
+            // 计算函数
+            function calculate() {
+                // 获取输入值
+                const baseCurrency = baseCurrencySelect.value;
+                const linkedCurrency = linkedCurrencySelect.value;
+                const investmentAmount = parseFloat(investmentAmountInput.value);
+                const investmentPeriod = parseInt(investmentPeriodInput.value);
+                const agreedExchangeRate = parseFloat(agreedExchangeRateInput.value);
+                const annualInterestRate = parseFloat(annualInterestRateInput.value) / 100;
+                const marketExchangeRate = parseFloat(marketExchangeRateInput.value);
+                
+                // 验证输入
+                if (isNaN(investmentAmount) || investmentAmount <= 0) {
+                    showAlert('請輸入有效的投資額');
+                    return;
+                }
+                
+                if (isNaN(investmentPeriod) || investmentPeriod <= 0) {
+                    showAlert('請輸入有效的投資期');
+                    return;
+                }
+                
+                if (isNaN(agreedExchangeRate) || agreedExchangeRate <= 0) {
+                    showAlert('請輸入有效的協定匯率');
+                    return;
+                }
+                
+                if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+                    showAlert('請輸入有效的年息率');
+                    return;
+                }
+                
+                if (isNaN(marketExchangeRate) || marketExchangeRate <= 0) {
+                    showAlert('請輸入有效的到期時市場匯率');
+                    return;
+                }
+                
+                // 确定全年日数
+                let daysInYear = 360; // 默认为360天
+                if (baseCurrency === 'HKD' || baseCurrency === 'GBP' || baseCurrency === 'SGD') {
+                    daysInYear = 365;
+                }
+                
+                // 计算利息
+                const interest = investmentAmount * annualInterestRate * (investmentPeriod / daysInYear);
+                
+                // 计算本金加利息的总额
+                const principalPlusInterest = investmentAmount + interest;
+                
+                // 更新基本结果显示
+                interestAmountElement.textContent = formatCurrency(interest, baseCurrency);
+                principalPlusInterestElement.textContent = formatCurrency(principalPlusInterest, baseCurrency);
+                
+                // 判断情景
+                if (marketExchangeRate >= agreedExchangeRate) {
+                    // 情景一：到期时市场汇率 ≥ 协定汇率
+                    scenarioInfo.innerHTML = `<div class="scenario-indicator scenario-1">情景一：到期時市場匯率 (${marketExchangeRate.toFixed(4)}) ≥ 協定匯率 (${agreedExchangeRate.toFixed(4)})</div>`;
+                    
+                    // 显示情景一结果，隐藏情景二结果
+                    scenario1Result.style.display = 'block';
+                    scenario2Result.style.display = 'none';
+                    
+                    // 情景一：以基本货币收取到期款项
+                    scenario1AmountElement.textContent = formatCurrency(principalPlusInterest, baseCurrency);
+                    scenario1ProfitElement.textContent = formatCurrency(interest, baseCurrency);
+                    scenario1ProfitElement.className = 'result-value positive';
+                } else {
+                    // 情景二：到期时市场汇率 < 协定汇率
+                    scenarioInfo.innerHTML = `<div class="scenario-indicator scenario-2">情景二：到期時市場匯率 (${marketExchangeRate.toFixed(4)}) < 協定匯率 (${agreedExchangeRate.toFixed(4)})</div>`;
+                    
+                    // 显示情景二结果，隐藏情景一结果
+                    scenario1Result.style.display = 'none';
+                    scenario2Result.style.display = 'block';
+                    
+                    // 情景二：以挂钩货币收取到期款项
+                    const linkedCurrencyAmount = principalPlusInterest / agreedExchangeRate;
+                    scenario2LinkedCurrencyAmountElement.textContent = formatCurrency(linkedCurrencyAmount, linkedCurrency);
+                    
+                    // 评估实际盈亏（以基本货币计）
+                    const baseCurrencyAmount = linkedCurrencyAmount * marketExchangeRate;
+                    scenario2BaseCurrencyAmountElement.textContent = formatCurrency(baseCurrencyAmount, baseCurrency);
+                    
+                    const profit = baseCurrencyAmount - investmentAmount;
+                    scenario2ProfitElement.textContent = formatCurrency(profit, baseCurrency);
+                    scenario2ProfitElement.className = profit >= 0 ? 'result-value positive' : 'result-value negative';
+                }
+                
+                // 显示结果容器
+                resultContainer.style.display = 'block';
+                
+                // 滚动到结果区域
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // 格式化货币
+            function formatCurrency(amount, currency) {
+                const formatter = new Intl.NumberFormat('zh-HK', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                return formatter.format(amount);
+            }
+            
+            // 显示提示框
+            function showAlert(message) {
+                // 创建提示框元素
+                const alertOverlay = document.createElement('div');
+                alertOverlay.className = 'overlay';
+                
+                const alertBox = document.createElement('div');
+                alertBox.className = 'alert';
+                
+                const alertTitle = document.createElement('div');
+                alertTitle.className = 'alert-title';
+                alertTitle.textContent = '提示';
+                
+                const alertMessage = document.createElement('div');
+                alertMessage.className = 'alert-message';
+                alertMessage.textContent = message;
+                
+                const alertButton = document.createElement('button');
+                alertButton.className = 'alert-button';
+                alertButton.textContent = '確定';
+                
+                // 组装提示框
+                alertBox.appendChild(alertTitle);
+                alertBox.appendChild(alertMessage);
+                alertBox.appendChild(alertButton);
+                
+                alertOverlay.appendChild(alertBox);
+                document.body.appendChild(alertOverlay);
+                
+                // 显示提示框
+                setTimeout(() => {
+                    alertOverlay.classList.add('show');
+                    alertBox.classList.add('show');
+                }, 10);
+                
+                // 添加确定按钮点击事件
+                alertButton.addEventListener('click', function() {
+                    alertOverlay.classList.remove('show');
+                    alertBox.classList.remove('show');
+                    
+                    // 动画结束后移除元素
+                    setTimeout(() => {
+                        document.body.removeChild(alertOverlay);
+                    }, 300);
+                });
+                
+                // 点击遮罩层关闭提示框
+                alertOverlay.addEventListener('click', function(e) {
+                    if (e.target === alertOverlay) {
+                        alertOverlay.classList.remove('show');
+                        alertBox.classList.remove('show');
+                        
+                        // 动画结束后移除元素
+                        setTimeout(() => {
+                            document.body.removeChild(alertOverlay);
+                        }, 300);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

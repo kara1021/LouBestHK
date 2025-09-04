@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>普通定期存款計算機 - 老Best的大自在空間</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 定期存款计算机专用样式 - 不影响全局样式 */
+        
+        /* 计算器容器样式 */
+        .time-deposit-calculator .calculator-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 2px 15px var(--shadow-color);
+        }
+        
+        /* 表单行和列样式 */
+        .time-deposit-calculator .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .time-deposit-calculator .form-col {
+            flex: 1;
+        }
+        
+        /* 表单组样式 */
+        .time-deposit-calculator .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .time-deposit-calculator .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+        
+        /* 输入框和选择框样式 */
+        .time-deposit-calculator input[type="number"],
+        .time-deposit-calculator input[type="date"],
+        .time-deposit-calculator select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--card-background);
+            color: var(--secondary-color);
+        }
+        
+        .time-deposit-calculator input[type="number"]:focus,
+        .time-deposit-calculator input[type="date"]:focus,
+        .time-deposit-calculator select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 119, 237, 0.1);
+        }
+        
+        /* 按钮样式 */
+        .time-deposit-calculator .calculator-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 48px; /* 与输入框高度一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .time-deposit-calculator .calculator-button:hover {
+            background-color: #0051d5;
+            transform: translateY(-1px);
+        }
+        
+        .time-deposit-calculator .calculator-button:active {
+            transform: translateY(0);
+        }
+        
+        /* 结果显示样式 */
+        .time-deposit-calculator .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .time-deposit-calculator .result-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .time-deposit-calculator .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .time-deposit-calculator .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .time-deposit-calculator .result-item span:first-child {
+            font-weight: 500;
+            color: #86868b;
+        }
+        
+        .time-deposit-calculator .result-item span:last-child {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .time-deposit-calculator .result-item.highlight {
+            background-color: rgba(0, 119, 237, 0.1);
+            margin: 10px -20px -10px;
+            padding: 15px 20px;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .time-deposit-calculator .result-item.highlight span:last-child {
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+        
+        /* 说明部分样式 */
+        .time-deposit-calculator .note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light-color);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .time-deposit-calculator .note p {
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .time-deposit-calculator .note ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .time-deposit-calculator .note li {
+            margin-bottom: 5px;
+            color: #86868b;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .time-deposit-calculator .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .time-deposit-calculator .form-col {
+                width: 100%;
+            }
+            
+            .time-deposit-calculator .calculator-container {
+                padding: 20px;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <!-- Header內容將透過JavaScript動態加載 -->
+        </header>
+        
+        <main class="page-content time-deposit-calculator">
+            <div class="page-header-content">
+                <h1>普通定期存款計算機</h1>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator">
+                    <form id="depositForm">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="principal">本金金額</label>
+                                    <input type="number" id="principal" name="principal" required min="0" step="0.01" placeholder="請輸入本金金額">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="currency">幣種</label>
+                                    <select id="currency" name="currency">
+                                        <option value="HKD">港元 (HKD)</option>
+                                        <option value="USD">美元 (USD)</option>
+                                        <option value="RMB">人民幣 (RMB)</option>
+                                        <option value="GBP">英鎊 (GBP)</option>
+                                        <option value="AUD">澳元 (AUD)</option>
+                                        <option value="NZD">紐西蘭元 (NZD)</option>
+                                        <option value="SGD">新加坡元 (SGD)</option>
+                                        <option value="EUR">歐元 (EUR)</option>
+                                        <option value="JPY">日圓 (JPY)</option>
+                                        <option value="CHF">瑞士法郎 (CHF)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="period">存款期</label>
+                                    <select id="period" name="period">
+                                        <option value="7">7天</option>
+                                        <option value="14">14天</option>
+                                        <option value="30">1個月</option>
+                                        <option value="60">2個月</option>
+                                        <option value="90">3個月</option>
+                                        <option value="180">6個月</option>
+                                        <option value="270">9個月</option>
+                                        <option value="365">12個月</option>
+                                        <option value="730">24個月</option>
+                                        <option value="special">特殊存期(直接錄入存款天數)</option>
+                                        <option value="calendar">日曆選擇(選擇起息日及到期日)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="specialPeriodGroup" style="display: none;">
+                                    <label for="specialDays">特殊存期天數</label>
+                                    <input type="number" id="specialDays" name="specialDays" min="1" placeholder="請輸入存款天數">
+                                </div>
+                                <div class="form-group" id="calendarPeriodGroup" style="display: none;">
+                                    <label for="startDate">起息日</label>
+                                    <input type="date" id="startDate" name="startDate">
+                                    
+                                    <label for="endDate">到期日</label>
+                                    <input type="date" id="endDate" name="endDate">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="interestRate">年利率 (%)</label>
+                                    <input type="number" id="interestRate" name="interestRate" required min="0" step="0.01" placeholder="請輸入年利率">
+                                </div>
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button type="submit" class="calculator-button">計算</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                    <div id="result" class="result" style="display: none;">
+                        <h3 class="result-title">計算結果</h3>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="result-item">
+                                    <span>本金</span>
+                                    <span id="resultPrincipal"></span>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="result-item">
+                                    <span>存款天數</span>
+                                    <span id="resultDays"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="result-item">
+                                    <span>年利率</span>
+                                    <span id="resultRate"></span>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="result-item">
+                                    <span>利息</span>
+                                    <span id="resultInterest"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="result-item highlight">
+                                    <span>本息合計</span>
+                                    <span id="resultTotal"></span>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <!-- 空列以保持佈局平衡 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note">
+                    <p>計算說明：</p>
+                    <ul>
+                        <li>一年總天數︰港元及英鎊而言，以一年365天的基準計算; 其他貨幣（包括美元及人民幣）則以一年360天的基準計算</li>
+                        <li>利息計算公式：本金 × 年利率 × (存款天數 / 一年總天數)</li>
+                        <li>使用日曆選擇功能時，系統會自動計算起息日至到期日的實際天數</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Footer內容將透過JavaScript動態加載 -->
+        </footer>
+    </div>
+    
+    <script src="common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const periodSelect = document.getElementById('period');
+            const specialPeriodGroup = document.getElementById('specialPeriodGroup');
+            const calendarPeriodGroup = document.getElementById('calendarPeriodGroup');
+            const depositForm = document.getElementById('depositForm');
+            const resultContainer = document.getElementById('result');
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            
+            // 設置今天的日期為默認值
+            const today = new Date().toISOString().split('T')[0];
+            startDateInput.value = today;
+            
+            // 設置一個月後的日期為默認到期日
+            const nextMonth = new Date();
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            endDateInput.value = nextMonth.toISOString().split('T')[0];
+            
+            // 設置起息日的最小值為今天
+            startDateInput.min = today;
+            
+            // 監聽存款期選擇變化
+            periodSelect.addEventListener('change', function() {
+                // 隱藏所有特殊選項組
+                specialPeriodGroup.style.display = 'none';
+                calendarPeriodGroup.style.display = 'none';
+                
+                // 根據選擇顯示相應的選項組
+                if (this.value === 'special') {
+                    specialPeriodGroup.style.display = 'block';
+                } else if (this.value === 'calendar') {
+                    calendarPeriodGroup.style.display = 'block';
+                }
+            });
+            
+            // 監聽起息日變化，更新到期日的最小值
+            startDateInput.addEventListener('change', function() {
+                const startDate = new Date(this.value);
+                const minEndDate = new Date(startDate);
+                minEndDate.setDate(minEndDate.getDate() + 1); // 到期日至少比起息日晚一天
+                endDateInput.min = minEndDate.toISOString().split('T')[0];
+                
+                // 如果當前選擇的到期日早於新的最小值，則更新到期日
+                if (new Date(endDateInput.value) < minEndDate) {
+                    endDateInput.value = minEndDate.toISOString().split('T')[0];
+                }
+            });
+            
+            // 監聽表單提交
+            depositForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                calculateDeposit();
+            });
+            
+            // 計算定期存款
+            function calculateDeposit() {
+                const principal = parseFloat(document.getElementById('principal').value);
+                const currency = document.getElementById('currency').value;
+                const period = document.getElementById('period').value;
+                const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+                
+                let days;
+                
+                if (period === 'special') {
+                    // 特殊存期模式
+                    days = parseInt(document.getElementById('specialDays').value);
+                    if (isNaN(days) || days < 1) {
+                        alert('請輸入有效的特殊存期天數');
+                        return;
+                    }
+                } else if (period === 'calendar') {
+                    // 日曆選擇模式
+                    const startDate = new Date(document.getElementById('startDate').value);
+                    const endDate = new Date(document.getElementById('endDate').value);
+                    
+                    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                        alert('請選擇有效的起息日和到期日');
+                        return;
+                    }
+                    
+                    if (startDate >= endDate) {
+                        alert('到期日必須晚於起息日');
+                        return;
+                    }
+                    
+                    // 計算兩個日期之間的天數差
+                    const timeDiff = endDate.getTime() - startDate.getTime();
+                    days = Math.ceil(timeDiff / (1000 * 3600 * 24)); // 轉換為天數
+                } else {
+                    // 預設存期模式
+                    days = parseInt(period);
+                }
+                
+                // 根據幣種確定一年的天數
+                const daysInYear = (currency === 'HKD' || currency === 'GBP') ? 365 : 360;
+                
+                // 計算利息: 本金 × 年利率 × (存款天數 / 一年天數)
+                const interest = principal * interestRate * (days / daysInYear);
+                const total = principal + interest;
+                
+                // 顯示結果
+                document.getElementById('resultPrincipal').textContent = principal.toFixed(2) + ' ' + currency;
+                document.getElementById('resultDays').textContent = days + ' 天';
+                document.getElementById('resultRate').textContent = (interestRate * 100).toFixed(2) + '%';
+                document.getElementById('resultInterest').textContent = interest.toFixed(2) + ' ' + currency;
+                document.getElementById('resultTotal').textContent = total.toFixed(2) + ' ' + currency;
+                
+                // 添加動畫效果
+                resultContainer.style.opacity = '0';
+                resultContainer.style.display = 'block';
+                setTimeout(() => {
+                    resultContainer.style.transition = 'opacity 0.5s ease';
+                    resultContainer.style.opacity = '1';
+                }, 10);
+            }
+        });
+    </script>
+</body>
+</html>
