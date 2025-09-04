@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老Best的大自在空間 - 定期存款利率比較</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>/* 定期存款利率页面样式 */
+.main-content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.deposit-rates-section {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.section-intro {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.deposit-rates-container {
+  margin: 20px 0;
+}
+
+.deposit-rates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.deposit-rates-table th, 
+.deposit-rates-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.deposit-rates-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+.deposit-rates-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.deposit-rates-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#currency-filter {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  min-width: 150px;
+}
+
+#refresh-rates {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#refresh-rates:hover {
+  background-color: #45a049;
+}
+
+.last-updated {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.loading, .error, .no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.highest-rate {
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .deposit-rates-table {
+    font-size: 0.9em;
+  }
+  
+  .deposit-rates-table th, 
+  .deposit-rates-table td {
+    padding: 8px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  #currency-filter, #refresh-rates {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <!-- Header内容将通过JavaScript动态加载 -->
+        </header>
+        
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <section class="deposit-rates-section">
+                <h1>定期存款利率比較</h1>
+                <p class="section-intro">
+                    以下為多家銀行的定期存款利率比較，數據定期從各銀行官方網站更新。
+                </p>
+                
+                <div class="deposit-rates-container">
+                    <div class="last-updated" id="last-updated">最后更新: 加载中...</div>
+                    
+                    <div class="controls">
+                        <select id="currency-filter">
+                            <option value="all">所有货币</option>
+                            <option value="HKD">港币</option>
+                            <option value="RMB">人民币</option>
+                            <option value="USD">美元</option>
+                        </select>
+                        
+                        <button id="refresh-rates">刷新数据</button>
+                    </div>
+                    
+                    <table class="deposit-rates-table">
+                        <thead>
+                            <tr>
+                                <th>银行</th>
+                                <th>货币</th>
+                                <th>存款期限</th>
+                                <th>利率</th>
+                                <th>最后更新</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rates-tbody">
+                            <!-- 数据将通过JavaScript动态填充 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <!-- Footer内容将通过JavaScript动态加载 -->
+        </footer>
+    </div>
+    
+    <script src="common.js"></script>
+    <script src="deposit-rates.js"></script>
+</body>
+</html>
