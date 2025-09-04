@@ -913,9 +913,10 @@ const headerConfig = {
     },
     menuItems: [
         { text: '首頁', url: 'index.html' },
-        { text: '渣打馬拉松儲蓄戶口', url: 'marathon-savings-account.html' },
-        { text: 'Mox Flexi Booster Savings', url: 'flexi-booster.html' },
-        { text: '兌外幣再做定存 收益計算機', url: 'fx-deposit-return.html' },
+        //{ text: '渣打馬拉松儲蓄戶口', url: 'marathon-savings-account.html' },
+        //{ text: 'Mox Flexi Booster Savings', url: 'flexi-booster.html' },
+        //{ text: '兌外幣再做定存 收益計算機', url: 'fx-deposit-return.html' },
+        //{ text: '一般定期存款計算機', url: 'time_deposit_calculator.html' },
         { text: '香港銀行體系結餘與利率數據', url: 'hibor_overnight.html' }
     ]
 };
