@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="rate-input-group">
                                     <span class="rate-label">年利率：</span>
-                                    <input type="number" class="rate-input" id="hkd-phase1-rate" value="0.3" step="0.01" min="0" onchange="calculatePhase('hkd', 1)">
+                                    <input type="number" class="rate-input" id="hkd-phase1-rate" value="1" step="0.01" min="0" onchange="calculatePhase('hkd', 1)">
                                     <span class="percent-sign">%</span>
                                 </div>
                                 <div class="form-group">
@@ -73,11 +73,11 @@
                             <div class="phase-section">
                                 <div class="phase-title">
                                     <div class="phase-number">2</div>
-                                    第二階段（其後30日）
+                                    第二階段（第31-60日）
                                 </div>
                                 <div class="rate-input-group">
                                     <span class="rate-label">年利率：</span>
-                                    <input type="number" class="rate-input" id="hkd-phase2-rate" value="0.5" step="0.01" min="0" onchange="calculatePhase('hkd', 2)">
+                                    <input type="number" class="rate-input" id="hkd-phase2-rate" value="1.5" step="0.01" min="0" onchange="calculatePhase('hkd', 2)">
                                     <span class="percent-sign">%</span>
                                 </div>
                                 <div class="form-group">
@@ -93,11 +93,11 @@
                             <div class="phase-section">
                                 <div class="phase-title">
                                     <div class="phase-number">3</div>
-                                    第三階段（最後30日）
+                                    第三階段（第61-90日）
                                 </div>
                                 <div class="rate-input-group">
                                     <span class="rate-label">年利率：</span>
-                                    <input type="number" class="rate-input" id="hkd-phase3-rate" value="3" step="0.01" min="0" onchange="calculatePhase('hkd', 3)">
+                                    <input type="number" class="rate-input" id="hkd-phase3-rate" value="1.8" step="0.01" min="0" onchange="calculatePhase('hkd', 3)">
                                     <span class="percent-sign">%</span>
                                 </div>
                                 <div class="form-group">
@@ -108,6 +108,26 @@
                                     期內收益：$0.00
                                 </div>
                             </div>
+                            <!-- 第四階段 -->
+<div class="phase-section">
+    <div class="phase-title">
+        <div class="phase-number">4</div>
+        第四階段（第91-120日）
+    </div>
+    <div class="rate-input-group">
+        <span class="rate-label">年利率：</span>
+        <input type="number" class="rate-input" id="hkd-phase4-rate" value="3" step="0.01" min="0" onchange="calculatePhase('hkd', 4)">
+        <span class="percent-sign">%</span>
+    </div>
+    <div class="form-group">
+        <label for="hkd-phase4-amount">存款金額 (HKD)</label>
+        <input type="number" id="hkd-phase4-amount" min="1" value="10000" step="100" onchange="validateAmount('hkd'); calculatePhase('hkd', 4)">
+    </div>
+    <div class="earnings-display" id="hkd-phase4-earnings">
+        期內收益：$0.00
+    </div>
+</div>
+
                         </div>
 
                         <!-- 總收益 -->
@@ -144,7 +164,7 @@
                                             <div class="reference-earnings" id="hkd-month1-ref1">參考收益：$0.00</div>
                                         </div>
                                         <div class="input-group">
-                                            <label for="hkd-month1-rate2">其後30日定期存款年利率 (HKD)</label>
+                                            <label for="hkd-month1-rate2">第31-60日 (HKD)</label>
                                             <div class="input-wrapper">
                                                 <input type="number" id="hkd-month1-rate2" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
                                                 <span class="input-suffix">%</span>
@@ -152,13 +172,22 @@
                                             <div class="reference-earnings" id="hkd-month1-ref2">參考收益：$0.00</div>
                                         </div>
                                         <div class="input-group">
-                                            <label for="hkd-month1-rate3">最後30日定期存款年利率 (HKD)</label>
+                                            <label for="hkd-month1-rate3">第61-90日 (HKD)</label>
                                             <div class="input-wrapper">
                                                 <input type="number" id="hkd-month1-rate3" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
                                                 <span class="input-suffix">%</span>
                                             </div>
                                             <div class="reference-earnings" id="hkd-month1-ref3">參考收益：$0.00</div>
                                         </div>
+                                        <div class="input-group">
+    <label for="hkd-month1-rate4">第91-120日定期存款年利率 (HKD)</label>
+    <div class="input-wrapper">
+        <input type="number" id="hkd-month1-rate4" value="0.25" step="0.01" min="0" onchange="calculateComparison('hkd')">
+        <span class="input-suffix">%</span>
+    </div>
+    <div class="reference-earnings" id="hkd-month1-ref4">參考收益：$0.00</div>
+</div>
+
                                     </div>
                                 </div>
                                 
@@ -225,11 +254,11 @@
                             <div class="phase-section">
                                 <div class="phase-title">
                                     <div class="phase-number">2</div>
-                                    第二階段（其後30日）
+                                    第二階段（第31-60日）
                                 </div>
                                 <div class="rate-input-group">
                                     <span class="rate-label">年利率：</span>
-                                    <input type="number" class="rate-input" id="usd-phase2-rate" value="3.5" step="0.01" min="0" onchange="calculatePhase('usd', 2)">
+                                    <input type="number" class="rate-input" id="usd-phase2-rate" value="3.2" step="0.01" min="0" onchange="calculatePhase('usd', 2)">
                                     <span class="percent-sign">%</span>
                                 </div>
                                 <div class="form-group">
@@ -245,11 +274,11 @@
                             <div class="phase-section">
                                 <div class="phase-title">
                                     <div class="phase-number">3</div>
-                                    第三階段（最後30日）
+                                    第三階段（第61-90日）
                                 </div>
                                 <div class="rate-input-group">
                                     <span class="rate-label">年利率：</span>
-                                    <input type="number" class="rate-input" id="usd-phase3-rate" value="6" step="0.01" min="0" onchange="calculatePhase('usd', 3)">
+                                    <input type="number" class="rate-input" id="usd-phase3-rate" value="3.5" step="0.01" min="0" onchange="calculatePhase('usd', 3)">
                                     <span class="percent-sign">%</span>
                                 </div>
                                 <div class="form-group">
@@ -260,6 +289,26 @@
                                     期內收益：$0.00
                                 </div>
                             </div>
+                            <!-- 第四階段 -->
+<div class="phase-section">
+    <div class="phase-title">
+        <div class="phase-number">4</div>
+        第四階段（第91-120日）
+    </div>
+    <div class="rate-input-group">
+        <span class="rate-label">年利率：</span>
+        <input type="number" class="rate-input" id="usd-phase4-rate" value="5" step="0.01" min="0" onchange="calculatePhase('usd', 4)">
+        <span class="percent-sign">%</span>
+    </div>
+    <div class="form-group">
+        <label for="usd-phase4-amount">存款金額 (USD)</label>
+        <input type="number" id="usd-phase4-amount" min="1" value="2000" step="100" onchange="validateAmount('usd'); calculatePhase('usd', 4)">
+    </div>
+    <div class="earnings-display" id="usd-phase4-earnings">
+        期內收益：$0.00
+    </div>
+</div>
+
                         </div>
 
                         <!-- 總收益 -->
@@ -296,7 +345,7 @@
                                             <div class="reference-earnings" id="usd-month1-ref1">參考收益：$0.00</div>
                                         </div>
                                         <div class="input-group">
-                                            <label for="usd-month1-rate2">其後30日定期存款年利率 (USD)</label>
+                                            <label for="usd-month1-rate2">第31-60日 (USD)</label>
                                             <div class="input-wrapper">
                                                 <input type="number" id="usd-month1-rate2" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
                                                 <span class="input-suffix">%</span>
@@ -304,13 +353,22 @@
                                             <div class="reference-earnings" id="usd-month1-ref2">參考收益：$0.00</div>
                                         </div>
                                         <div class="input-group">
-                                            <label for="usd-month1-rate3">最後30日定期存款年利率 (USD)</label>
+                                            <label for="usd-month1-rate3">第61-90日 (USD)</label>
                                             <div class="input-wrapper">
                                                 <input type="number" id="usd-month1-rate3" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
                                                 <span class="input-suffix">%</span>
                                             </div>
                                             <div class="reference-earnings" id="usd-month1-ref3">參考收益：$0.00</div>
                                         </div>
+                                        <div class="input-group">
+    <label for="usd-month1-rate4">第91-120日定期存款年利率 (USD)</label>
+    <div class="input-wrapper">
+        <input type="number" id="usd-month1-rate4" value="2.7" step="0.01" min="0" onchange="calculateComparison('usd')">
+        <span class="input-suffix">%</span>
+    </div>
+    <div class="reference-earnings" id="usd-month1-ref4">參考收益：$0.00</div>
+</div>
+
                                     </div>
                                 </div>
                                 
@@ -423,7 +481,7 @@
             const minAmount = currency === 'hkd' ? 10000 : 2000;
             const maxAmount = currency === 'hkd' ? 10000000 : 1300000;
             
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
                 
                 if (amount < minAmount) {
@@ -477,7 +535,7 @@
             let totalEarnings = 0;
             
             // 计算当前货币所有阶段的收益总和
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const amount = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-amount`).value) || 0;
                 const rate = parseFloat(document.getElementById(`${currentCurrency}-phase${i}-rate`).value) || 0;
                 
@@ -522,7 +580,7 @@
             
             if (period === '1') {
                 // 1個月定期存款比較
-                for (let i = 1; i <= 3; i++) {
+                for (let i = 1; i <= 4; i++) {
                     const amount = parseFloat(document.getElementById(`${currency}-phase${i}-amount`).value) || 0;
                     const rate = parseFloat(document.getElementById(`${currency}-month1-rate${i}`).value) || 0;
                     
@@ -572,7 +630,7 @@
         window.onload = function() {
             // 计算所有阶段的收益
             ['hkd', 'usd'].forEach(currency => {
-                for (let i = 1; i <= 3; i++) {
+                for (let i = 1; i <= 4; i++) {
                     calculatePhase(currency, i);
                 }
             });
